@@ -160,17 +160,17 @@ frame_bg = '#e0e0f0'
 button_bg = '#007acc'
 button_fg = '#000'
 
-# Load background image
+# Încărcare imagine de fundal
 background_image_path = '.idea/pngtree-colorful-graphic-education-math-formula-background-on-blackboard-picture-image_1457817.jpg'
 background_image = Image.open(background_image_path)
 background_image = background_image.resize((root.winfo_screenwidth(), root.winfo_screenheight()), Image.Resampling.LANCZOS)
 background_photo = ImageTk.PhotoImage(background_image)
 
-# Create background label
+# Creare label pentru fundal
 background_label = tk.Label(root, image=background_photo)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-# Frame for inputs and history
+# Frame pentru inputuri și istoric
 frame = ttk.Frame(root, padding="10 10 10 10", style='Custom.TFrame')
 frame.grid(row=0, column=0, rowspan=2, sticky=(tk.W, tk.N, tk.S))
 
@@ -197,41 +197,41 @@ entry_d.bind("<KeyRelease>", update_plot)
 label_roots = ttk.Label(frame, text="", background=frame_bg, foreground=fg_color, style='Success.TLabel')
 label_roots.grid(row=4, column=0, columnspan=2, pady=(10, 10))
 
-# Frame for buttons
+# Frame pentru butoane
 buttons_frame = ttk.Frame(frame, padding="5 5 5 5", style='Custom.TFrame')
 buttons_frame.grid(row=5, column=0, columnspan=2, sticky=(tk.W, tk.E))
 
-# Add save button
+# Adaugare buton de salvare
 save_button = ttk.Button(buttons_frame, text="Salvează", command=add_current_to_history, style='Save.TButton')
 save_button.grid(row=0, column=0, padx=5, pady=(10, 10))
 
-# Add delete from history button
+# Adaugare buton de ștergere din istoric
 delete_from_history_button = ttk.Button(buttons_frame, text="Șterge", command=delete_selected_from_history,
                                         style='Delete.TButton')
 delete_from_history_button.grid(row=0, column=1, padx=5, pady=(10, 10))
 
-# Add clear history button
+# Adaugare buton de curățare a istoricului
 clear_history_button = ttk.Button(buttons_frame, text="Curăță", command=clear_history,
                                   style='Clear.TButton')
 clear_history_button.grid(row=0, column=2, padx=5, pady=(10, 10))
 
-# History frame inside the main frame
+# Frame pentru istoric în interiorul frame-ului principal
 history_frame = ttk.Frame(frame, padding="10 10 10 10", style='Custom.TFrame')
 history_frame.grid(row=6, column=0, columnspan=2, sticky=(tk.W, tk.E, tk.S))
 
 ttk.Label(history_frame, text="Grafice salvate:", background=frame_bg, foreground=fg_color).grid(row=0, column=0,
                                                                                                  sticky=tk.W)
 
-# History listbox
+# Listbox pentru istoric
 history_listbox = tk.Listbox(history_frame, height=15, width=50, selectmode=tk.MULTIPLE)
 history_listbox.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.S))
 history_listbox.bind('<<ListboxSelect>>', load_from_history)
 
-# Frame for plot
+# Frame pentru grafic
 plot_frame = ttk.Frame(root, padding="10 10 10 10", style='Custom.TFrame')
 plot_frame.grid(row=0, column=1, rowspan=2, sticky=(tk.N, tk.E, tk.S, tk.W))
 
-# Create matplotlib figure and axis
+# Creare figură și axă matplotlib
 fig = Figure(figsize=(6, 4), dpi=100)
 ax = fig.add_subplot(111)
 
@@ -240,13 +240,13 @@ canvas.get_tk_widget().grid(row=0, column=0, sticky=(tk.N, tk.E, tk.S, tk.W))
 
 canvas.mpl_connect('scroll_event', zoom)
 
-# Add matplotlib toolbar
+# Adaugare toolbar matplotlib
 toolbar_frame = ttk.Frame(plot_frame, style='Custom.TFrame')
 toolbar_frame.grid(row=1, column=0, sticky=(tk.W, tk.E))
 toolbar = NavigationToolbar2Tk(canvas, toolbar_frame)
 toolbar.update()
 
-# Configure grid weights for resizing
+# Configurare greutăți grid pentru redimensionare
 root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=2)
 root.rowconfigure(0, weight=1)
@@ -256,7 +256,7 @@ plot_frame.columnconfigure(0, weight=1)
 plot_frame.rowconfigure(0, weight=1)
 plot_frame.rowconfigure(1, weight=0)
 
-# Apply styles
+# Aplicare stiluri
 style = ttk.Style()
 style.configure('Custom.TFrame', background=frame_bg)
 style.configure('TLabel', background=frame_bg, foreground=fg_color)
